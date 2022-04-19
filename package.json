@@ -1,0 +1,23 @@
+{
+  "name": "criando-ferramentas-de-linha-de-comando",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gabrielg2d2/Criando-ferramentas-de-linha-de-comando.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Gabrielg2d2/Criando-ferramentas-de-linha-de-comando/issues"
+  },
+  "homepage": "https://github.com/Gabrielg2d2/Criando-ferramentas-de-linha-de-comando#readme",
+  "devDependencies": {
+    "mocha": "^9.2.2"
+  }
+}
