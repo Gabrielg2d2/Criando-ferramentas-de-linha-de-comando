@@ -8,6 +8,12 @@ const DEFAULT_ITEMS_CADASTRAR = {
   id: 1,
 };
 
+const DEFAULT_NEW_ITEM = {
+  name: "Flash",
+  poder: "Speed",
+  id: 2,
+};
+
 describe("Testes do módulo heróis", () => {
   it("Deve pesquisar um herói usando arquivos ", async () => {
     const expected = DEFAULT_ITEMS_CADASTRAR;
@@ -15,9 +21,11 @@ describe("Testes do módulo heróis", () => {
     deepEqual(primeira_posicao, expected);
   });
 
-  // it("Deve cadastrar um herói, usando arquivos", async () => {
-  //   const expected = DEFAULT_ITEMS_CADASTRAR;
+  it("Deve cadastrar um herói, usando arquivos", async () => {
+    const expected = DEFAULT_NEW_ITEM;
+    const response = await database.cadastrar(expected);
 
-  //   ok(null, expected);
-  // });
+    deepEqual(response.data, expected);
+    deepEqual(response.status, 200);
+  });
 });
