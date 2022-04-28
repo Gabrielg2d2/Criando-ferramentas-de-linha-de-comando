@@ -23,7 +23,26 @@ class Database {
     }
   }
 
+  async heroiExiste(name) {
+    const data = await this.obterDadosArquivo();
+
+    function heroiExiste(item) {
+      return item.name.toLowerCase() === name.toLowerCase();
+    }
+
+    return data.some(heroiExiste);
+  }
+
   async cadastrar(heroi) {
+    const isExist = await this.heroiExiste(heroi.name);
+    if (isExist) {
+      return {
+        status: 400,
+        message: `Herói ${heroi.name} já foi cadastrado na base`,
+        data: {},
+      };
+    }
+
     const data = await this.obterDadosArquivo();
     const id = heroi.id <= 2 ? heroi.id : Date.now();
 
