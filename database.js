@@ -14,9 +14,18 @@ class Database {
     return JSON.parse(arquivo.toString());
   }
 
-  async escreverArquivo(dados) {
+  async escreverArquivo(dados = []) {
     try {
       await writeFileAsync(this.NOME_ARQUIVO, JSON.stringify(dados));
+      return true;
+    } catch (error) {
+      return false;
+    }
+  }
+
+  async resetDatabase() {
+    try {
+      await this.escreverArquivo([]);
       return true;
     } catch (error) {
       return false;
@@ -74,6 +83,38 @@ class Database {
   async listId(id) {
     const data = await this.obterDadosArquivo();
     return data.filter((item) => item.id === id);
+  }
+
+  async remover(id) {
+    try {
+      const data = await this.obterDadosArquivo();
+
+      const isExist = data.some((item) => item.id === id);
+      if (!isExist) {
+        return {
+          status: 400,
+          message: "Herói não encontrado!",
+          data: false,
+        };
+      }
+
+      const dataFilter = data.filter((item) => item.id !== id);
+
+      const resultado = await this.escreverArquivo(dataFilter);
+      if (resultado) {
+        return {
+          status: 200,
+          message: "Herói removido com sucesso",
+          data: true,
+        };
+      }
+    } catch (error) {
+      return {
+        status: 400,
+        message: "Erro ao remover herói!",
+        data: false,
+      };
+    }
   }
 }
 

@@ -1,4 +1,1 @@
-[
-  { "id": 1, "name": "Batman", "poder": "Defense" },
-  { "id": 2, "name": "Flash", "poder": "Speed" }
-]
+[{"id":2,"name":"Flash","poder":"Speed"}]
